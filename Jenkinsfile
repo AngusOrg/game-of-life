@@ -13,6 +13,7 @@ node("master") {
 
   stage 'Build'
   // Build without running tests
+  input 'run tests?'
   sh "${mvnHome}/bin/mvn -B -U clean install -DskipTests"
   // archive the artifacts
   step([$class: 'ArtifactArchiver', artifacts: '**/*.war', fingerprint: true])
